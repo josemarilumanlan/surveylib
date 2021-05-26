@@ -2,8 +2,6 @@ package com.androidadvance.androidsurvey.fragment;
 
 import android.app.Service;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -15,6 +13,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.androidadvance.androidsurvey.Answers;
 import com.androidadvance.androidsurvey.R;
@@ -34,15 +35,13 @@ public class FragmentNumber extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_text_simple, container, false);
 
-        button_continue = (Button) rootView.findViewById(R.id.button_continue);
-        textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
-        editText_answer = (EditText) rootView.findViewById(R.id.editText_answer);
+        button_continue = rootView.findViewById(R.id.button_continue);
+        textview_q_title = rootView.findViewById(R.id.textview_q_title);
+        editText_answer = rootView.findViewById(R.id.editText_answer);
         editText_answer.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        button_continue.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                Answers.getInstance().put_answer(textview_q_title.getText().toString(), editText_answer.getText().toString().trim());
-                ((SurveyActivity) mContext).go_to_next();
-            }
+        button_continue.setOnClickListener(v -> {
+            Answers.getInstance().put_answer(textview_q_title.getText().toString(), editText_answer.getText().toString().trim());
+            ((SurveyActivity) mContext).go_to_next();
         });
 
         return rootView;

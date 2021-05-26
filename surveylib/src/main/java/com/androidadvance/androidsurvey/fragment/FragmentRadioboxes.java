@@ -1,8 +1,6 @@
 package com.androidadvance.androidsurvey.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -14,6 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.androidadvance.androidsurvey.Answers;
 import com.androidadvance.androidsurvey.R;
@@ -41,15 +42,10 @@ public class FragmentRadioboxes extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_radioboxes, container, false);
 
-        button_continue = (Button) rootView.findViewById(R.id.button_continue);
-        textview_q_title = (TextView) rootView.findViewById(R.id.textview_q_title);
-        radioGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
-        button_continue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((SurveyActivity) mContext).go_to_next();
-            }
-        });
+        button_continue = rootView.findViewById(R.id.button_continue);
+        textview_q_title = rootView.findViewById(R.id.textview_q_title);
+        radioGroup = rootView.findViewById(R.id.radioGroup);
+        button_continue.setOnClickListener(v -> ((SurveyActivity) mContext).go_to_next());
 
         return rootView;
     }
@@ -106,12 +102,7 @@ public class FragmentRadioboxes extends Fragment {
             radioGroup.addView(rb);
             allRb.add(rb);
 
-            rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    collect_data();
-                }
-            });
+            rb.setOnCheckedChangeListener((buttonView, isChecked) -> collect_data());
         }
 
         if (q_data.getRequired()) {

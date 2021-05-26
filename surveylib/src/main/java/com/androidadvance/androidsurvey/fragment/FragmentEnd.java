@@ -1,14 +1,15 @@
 package com.androidadvance.androidsurvey.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.androidadvance.androidsurvey.Answers;
 import com.androidadvance.androidsurvey.R;
@@ -27,18 +28,11 @@ public class FragmentEnd extends Fragment {
                 R.layout.fragment_end, container, false);
 
 
-        Button button_finish = (Button) rootView.findViewById(R.id.button_finish);
-        textView_end = (TextView) rootView.findViewById(R.id.textView_end);
+        Button button_finish = rootView.findViewById(R.id.button_finish);
+        textView_end = rootView.findViewById(R.id.textView_end);
 
 
-        button_finish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ((SurveyActivity) mContext).event_survey_completed(Answers.getInstance());
-
-            }
-        });
+        button_finish.setOnClickListener(v -> ((SurveyActivity) mContext).event_survey_completed(Answers.getInstance()));
 
         return rootView;
     }
