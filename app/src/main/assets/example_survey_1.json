@@ -1,53 +1,67 @@
 {
   "survey_properties": {
-    "intro_message": "<strong>Your feedback helps us to build a better mobile product.</strong><br><br><br>   Hello, Feedback from our clients, friends and family is how we make key decisions on what the future holds for XYZ App.<br><br>By combining data and previous feedback we have introduced many new features e.g. x, y, z.<br><br>It will take less than 2 minutes to answer the feedback quiz.",
+    "intro_message": "<strong>Your feedback helps us to builds a better and more personal ads for you.</strong><br><br><br>   Some intro messages etc etc etc",
     "end_message": "Thank you for having the time to take our survey.",
     "skip_intro": false
   },
   "questions": [
     {
+      "question_type": "Radioboxes",
+      "question_title": "What is your age group ?",
+      "description": "",
+      "required": true,
+      "random_choices": false,
+      "choices": [
+        "less than 20",
+        "20-30",
+        "30-40",
+        "40-50",
+        "50+"
+      ]
+    },
+    {
+      "question_type": "Radioboxes",
+      "question_title": "GENDER ?",
+      "description": "",
+      "required": true,
+      "random_choices": true,
+      "choices": [
+        "male",
+        "female"
+      ]
+    },
+    {
       "question_type": "Checkboxes",
-      "question_title": "What were you hoping the XYZ mobile app would do?",
+      "question_title": "Which of the following  promotions interest you?",
       "description": "(Select all that apply)",
       "required": false,
       "random_choices": false,
       "choices": [
-        "thing #1",
-        "thing #2",
-        "thing #3",
-        "thing #4"
+        "Tech",
+        "Lifestyle",
+        "Ultra Cheap Deals",
+        "Apparels"
       ]
     },
     {
-      "question_type": "Checkboxes",
-      "question_title": "Do you currently use one of these other software solutions?",
+      "question_type": "Radioboxes",
+      "question_title": "which Perth sub-region are you in?",
       "description": "",
-      "required": false,
-      "random_choices": true,
+      "required": true,
+      "random_choices": false,
       "choices": [
-        "<font color='#AA0000'>Yes, I use a <strong>red</strong> product</font>",
-        "I use a <font color='#00AA00'>green product</font>",
-        "I partialy use a <font color='#0000AA'><strong>blue</strong></font> product"
+        "Inner Metro",
+        "North East",
+        "North West",
+        "South East",
+        "South West"
       ]
     },
     {
-      "question_type": "String",
-      "question_title": "Why did you not subscribe at the end of your free trial ?",
-      "description": "",
-      "required": false
-    },
-    {
-      "question_title": "If this app was paid, how much you would give to have it ?",
+      "question_title": "How much you spend per coffee every day ?",
       "description": "",
       "required": false,
       "question_type": "Number"
-    },
-    {
-      "question_type": "StringMultiline",
-      "question_title": "We love feedback and if there is anything else you’d like us to improve please let us know.",
-      "description": "",
-      "required": false,
-      "number_of_lines": 4
     }
   ]
 }

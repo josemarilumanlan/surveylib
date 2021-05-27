@@ -18,11 +18,12 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.androidadvance.androidsurvey.Answers;
 import com.androidadvance.androidsurvey.R;
-import com.androidadvance.androidsurvey.SurveyActivity;
+import com.androidadvance.androidsurvey.SurveyView;
 import com.androidadvance.androidsurvey.models.Question;
 
 public class FragmentTextSimple extends Fragment {
 
+    private SurveyView surveyView;
     private FragmentActivity mContext;
     private Button button_continue;
     private TextView textview_q_title;
@@ -41,7 +42,7 @@ public class FragmentTextSimple extends Fragment {
             @Override
             public void onClick(View v) {
                 Answers.getInstance().put_answer(textview_q_title.getText().toString(), editText_answer.getText().toString().trim());
-                ((SurveyActivity) mContext).go_to_next();
+                surveyView.go_to_next();
             }
         });
 
@@ -86,4 +87,11 @@ public class FragmentTextSimple extends Fragment {
 
 
     }
+
+    public static final FragmentTextSimple newInstance(SurveyView surveyView){
+        FragmentTextSimple f = new FragmentTextSimple();
+        f.surveyView = surveyView;
+        return f;
+    }
+
 }

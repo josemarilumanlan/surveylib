@@ -1,6 +1,7 @@
 package com.androidadvance.androidsurvey;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 
 import java.util.LinkedHashMap;
@@ -20,7 +21,7 @@ public class Answers {
     }
 
     public String get_json_object() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(answered_hashmap,LinkedHashMap.class);
     }
 

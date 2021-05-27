@@ -13,11 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import com.androidadvance.androidsurvey.Answers;
 import com.androidadvance.androidsurvey.R;
-import com.androidadvance.androidsurvey.SurveyActivity;
+import com.androidadvance.androidsurvey.SurveyView;
 import com.androidadvance.androidsurvey.models.Question;
 
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ import java.util.List;
 
 public class FragmentCheckboxes extends Fragment {
 
+    private SurveyView surveyView;
     private Question q_data;
-    private FragmentActivity mContext;
     private Button button_continue;
     private TextView textview_q_title;
     private LinearLayout linearLayout_checkboxes;
@@ -45,7 +44,7 @@ public class FragmentCheckboxes extends Fragment {
         button_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((SurveyActivity) mContext).go_to_next();
+                surveyView.go_to_next();
             }
         });
 
@@ -84,8 +83,6 @@ public class FragmentCheckboxes extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
-        mContext = getActivity();
         q_data = (Question) getArguments().getSerializable("data");
 
         textview_q_title.setText(q_data != null ? q_data.getQuestionTitle() : "");
@@ -100,7 +97,7 @@ public class FragmentCheckboxes extends Fragment {
         }
 
         for (String choice : qq_data) {
-            CheckBox cb = new CheckBox(mContext);
+            CheckBox cb = new CheckBox(getContext());
             cb.setText(Html.fromHtml(choice));
             cb.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             cb.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -108,14 +105,15 @@ public class FragmentCheckboxes extends Fragment {
             allCb.add(cb);
 
 
-            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    collect_data();
-                }
-            });
+            cb.setOnCheckedChangeListener((buttonView, isChecked) -> collect_data());
         }
 
+    }
+
+    public static final FragmentCheckboxes newInstance(SurveyView surveyView){
+        FragmentCheckboxes f = new FragmentCheckboxes();
+        f.surveyView = surveyView;
+        return f;
     }
 
 

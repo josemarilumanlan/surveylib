@@ -18,11 +18,12 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.androidadvance.androidsurvey.Answers;
 import com.androidadvance.androidsurvey.R;
-import com.androidadvance.androidsurvey.SurveyActivity;
+import com.androidadvance.androidsurvey.SurveyView;
 import com.androidadvance.androidsurvey.models.Question;
 
 public class FragmentMultiline extends Fragment {
 
+    private SurveyView surveyView;
     private FragmentActivity mContext;
     private Button button_continue;
     private TextView textview_q_title;
@@ -39,7 +40,7 @@ public class FragmentMultiline extends Fragment {
         editText_answer = rootView.findViewById(R.id.editText_answer);
         button_continue.setOnClickListener(v -> {
              Answers.getInstance().put_answer(textview_q_title.getText().toString(), editText_answer.getText().toString().trim());
-            ((SurveyActivity) mContext).go_to_next();
+            surveyView.go_to_next();
         });
 
         return rootView;
@@ -80,4 +81,11 @@ public class FragmentMultiline extends Fragment {
 
 
     }
+
+    public static final FragmentMultiline newInstance(SurveyView surveyView){
+        FragmentMultiline f = new FragmentMultiline();
+        f.surveyView = surveyView;
+        return f;
+    }
+
 }

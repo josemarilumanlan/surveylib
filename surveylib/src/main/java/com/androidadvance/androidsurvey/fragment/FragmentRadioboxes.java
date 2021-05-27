@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.androidadvance.androidsurvey.Answers;
 import com.androidadvance.androidsurvey.R;
-import com.androidadvance.androidsurvey.SurveyActivity;
+import com.androidadvance.androidsurvey.SurveyView;
 import com.androidadvance.androidsurvey.models.Question;
 
 import java.util.ArrayList;
@@ -27,6 +27,7 @@ import java.util.List;
 
 public class FragmentRadioboxes extends Fragment {
 
+    private SurveyView surveyView;
     private Question q_data;
     private FragmentActivity mContext;
     private Button button_continue;
@@ -45,7 +46,7 @@ public class FragmentRadioboxes extends Fragment {
         button_continue = rootView.findViewById(R.id.button_continue);
         textview_q_title = rootView.findViewById(R.id.textview_q_title);
         radioGroup = rootView.findViewById(R.id.radioGroup);
-        button_continue.setOnClickListener(v -> ((SurveyActivity) mContext).go_to_next());
+        button_continue.setOnClickListener(v -> surveyView.go_to_next());
 
         return rootView;
     }
@@ -116,5 +117,10 @@ public class FragmentRadioboxes extends Fragment {
 
     }
 
+    public static final FragmentRadioboxes newInstance(SurveyView surveyView){
+        FragmentRadioboxes f = new FragmentRadioboxes();
+        f.surveyView = surveyView;
+        return f;
+    }
 
 }

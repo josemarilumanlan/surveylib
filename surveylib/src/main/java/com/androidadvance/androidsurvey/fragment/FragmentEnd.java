@@ -13,11 +13,12 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.androidadvance.androidsurvey.Answers;
 import com.androidadvance.androidsurvey.R;
-import com.androidadvance.androidsurvey.SurveyActivity;
+import com.androidadvance.androidsurvey.SurveyView;
 import com.androidadvance.androidsurvey.models.SurveyProperties;
 
 public class FragmentEnd extends Fragment {
 
+    private SurveyView surveyView;
     private FragmentActivity mContext;
     private TextView textView_end;
 
@@ -26,14 +27,9 @@ public class FragmentEnd extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_end, container, false);
-
-
         Button button_finish = rootView.findViewById(R.id.button_finish);
         textView_end = rootView.findViewById(R.id.textView_end);
-
-
-        button_finish.setOnClickListener(v -> ((SurveyActivity) mContext).event_survey_completed(Answers.getInstance()));
-
+        button_finish.setOnClickListener(v -> surveyView.event_survey_completed(Answers.getInstance()));
         return rootView;
     }
 
@@ -48,4 +44,11 @@ public class FragmentEnd extends Fragment {
         textView_end.setText(Html.fromHtml(survery_properties.getEndMessage()));
 
     }
+
+    public static final FragmentEnd newInstance(SurveyView surveyView){
+        FragmentEnd f = new FragmentEnd();
+        f.surveyView = surveyView;
+        return f;
+    }
+
 }
